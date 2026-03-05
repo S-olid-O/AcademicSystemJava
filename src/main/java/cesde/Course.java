@@ -29,6 +29,8 @@ public class Course {
         this.endDate = endDate;
     }
 
+    // Getters And Setters
+
     public void setId(int id) {
         this.id = id;
     }

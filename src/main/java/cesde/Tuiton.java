@@ -1,13 +1,15 @@
 package cesde;
 
+
 import java.util.List;
 import java.util.Scanner;
 
-public class School {
+public class Tuiton {
 
     Scanner sc = new Scanner(System.in);
 
     // Atributes
+
 
     private int id;
     private String nameSchool;
@@ -15,7 +17,7 @@ public class School {
 
     //Constructor
 
-    public School(int id, String nameSchool, String director) {
+    public Tuiton(int id, String nameSchool, String director) {
         this.id = id;
         this.nameSchool = nameSchool;
         this.director = director;
@@ -35,7 +37,6 @@ public class School {
         return director;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
@@ -47,4 +48,5 @@ public class School {
     public void setDirector(String director) {
         this.director = director;
     }
+
 }
