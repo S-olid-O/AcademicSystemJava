@@ -15,13 +15,14 @@ public class Student {
     private String email;
     private boolean status;
 
-    //Constructores
+    //Constructor
 
     public Student(){
 
     }
 
     public Student(String email){
+
         this.email = email;
     }
 
