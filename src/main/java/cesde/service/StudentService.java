@@ -18,7 +18,25 @@ public class StudentService {
     }
 
 
+    public Student createStudentService(){
 
+        System.out.println("Ingrese el id del Estudiente");
+        int id = sc.nextInt();
+        student.setId(id);
+        sc.nextLine();
+
+        System.out.println("Ingrese el Nombre del Estudiante");
+        String name = sc.nextLine();
+        student.setName(name);
+
+        System.out.println("Ingrese el apellido del estudiante");
+        String lastName = sc.nextLine();
+        student.setLastName(lastName);
+
+
+        return student;
+
+    }
 
     public Student updateStudentService(){
 
@@ -40,16 +58,31 @@ public class StudentService {
                 int id = sc.nextInt();
                 sc.nextLine();
                 student.setId(id);
+                break;
             case 2:
                 System.out.println("Actualizar Nombre");
                 String name = sc.nextLine();
                 student.setName(name);
+                break;
             default:
                 System.out.println("Seleccione una opción valida");
         }
 
 
         return student;
+    }
+
+    public void getStudentById(int id) {
+
+        if (id == student.getId()) {
+            System.out.println("id:" + student.getId() + "\n" +
+                    "Nombre:" + student.getName() + "\n" +
+                    "Apellido " + student.getLastName() + "\n" +
+                    "email: " + student.getEmail() + "\n" +
+                    "Status: " + student.isStatus());
+        } else {
+            System.out.println("Id no encontrado");
+        }
     }
 
 

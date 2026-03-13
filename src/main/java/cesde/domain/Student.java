@@ -7,6 +7,8 @@ public class Student {
 
     Scanner sc = new Scanner(System.in);
 
+    // POJO - Plain Old Java Object
+
     // Atributes
 
     private int id;

@@ -19,38 +19,15 @@ public class StudentView {
     }
 
 
-    public Student createStudent(Student student){
+    public void createStudent(){
 
-
-        System.out.println("Ingrese el id del Estudiente");
-        int id = sc.nextInt();
-        student.setId(id);
-        sc.nextLine();
-
-        System.out.println("Ingrese el Nombre del Estudiante");
-        String name = sc.nextLine();
-        student.setName(name);
-
-        System.out.println("Ingrese el apellido del estudiante");
-        String lastName = sc.nextLine();
-        student.setLastName(lastName);
-
-
-        return student;
+        studentService.createStudentService();
 
     }
 
     public void getStudentById(int id){
+        studentService.getStudentById(id);
 
-        if(id == student.getId()){
-            System.out.println("id:" + student.getId() + "\n" +
-                    "Nombre:" + student.getName() + "\n" +
-                    "Apellido " + student.getLastName() + "\n" +
-                    "email: " + student.getEmail() + "\n" +
-                    "Status: " + student.isStatus());
-        }else{
-            System.out.println("Id no encontrado");
-        }
 
     }
 
