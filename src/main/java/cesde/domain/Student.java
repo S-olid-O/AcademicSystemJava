@@ -1,4 +1,4 @@
-package cesde;
+package cesde.domain;
 
 import java.util.List;
 import java.util.Scanner;
@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Student {
 
     Scanner sc = new Scanner(System.in);
+
+    // POJO - Plain Old Java Object
 
     // Atributes
 
@@ -83,51 +85,8 @@ public class Student {
 
     
 
-    public Student createStudent(Student student){
 
 
-        System.out.println("Ingrese el id del Estudiente");
-        int id = sc.nextInt();
-        student.setId(id);
-        sc.nextLine();
 
-        System.out.println("Ingrese el Nombre del Estudiante");
-        String name = sc.nextLine();
-        student.setName(name);
-
-        System.out.println("Ingrese el apellido del estudiante");
-        String lastName = sc.nextLine();
-        student.setLastName(lastName);
-
-
-        return student;
-
-    }
-
-    public void getStudentById(int id){
-
-        if(id == this.id){
-            System.out.println("id:" + this.id + "\n" +
-                    "Nombre:" + this.name + "\n" +
-                    "Apellido " + this.lastName + "\n" +
-                    "email: " + this.email + "\n" +
-                    "Statu");
-        }else{
-            System.out.println("Id no encontrado");
-        }
-
-    }
-
-    public List<Student> getAllStudents(){
-        return null;
-    }
-
-    public Student updateStudent(Student student){
-        return student;
-    }
-
-    public void deleteStudent(int id){
-
-    }
 
 }
