@@ -1,93 +1,26 @@
 package cesde.service;
 
 import cesde.domain.Student;
-import cesde.repository.StudentRepository;
 
-import java.util.Scanner;
+import java.util.List;
+import java.util.Optional;
 
-public class StudentService {
+public interface StudentService {
 
-    Scanner sc = new Scanner(System.in);
+    // No tienen atributos
+    // solo tienen metodos , que son la firma de lo que se va a implementar
+    // No se pueden instaciar , solo se pueden implementar
+    // Son una abstraccion total , no tienen nada de implementacion , solo la firma de los metodos
 
+    // Contratos
 
-    // Voy a crear una instancia unica de Student
-
-    private final Student student;
-    private final StudentRepository studentRepository;
-
-    public StudentService(Student student, StudentRepository studentRepository){
-
-        this.student = student;
-        this.studentRepository= studentRepository;// Esto es una inyeccion de dependencias
-    }
-
-
-    public Student createStudentService(){
-
-        System.out.println("Ingrese el id del Estudiente");
-        int id = sc.nextInt();
-        student.setId(id);
-        sc.nextLine();
-
-        System.out.println("Ingrese el Nombre del Estudiante");
-        String name = sc.nextLine();
-        student.setName(name);
-
-        System.out.println("Ingrese el apellido del estudiante");
-        String lastName = sc.nextLine();
-        student.setLastName(lastName);
+    public Student createStudentService();
+    public Student updateStudentService();
+    public Optional<Student> getStudentById(int id);
+    public List<Student> getAllStudents();
+        public void deleteStudent(int id);
 
 
-        return studentRepository.createStudentRepository(student);
-
-    }
-
-    public Student updateStudentService(){
-
-        System.out.println("Seleccione el dato a actualizar \n" +
-                "1. id \n" +
-                "2. Nombre \n" +
-                "3. Apellido \n" +
-                "4. Email \n" +
-                "5. Estado ");
-
-
-        int option = sc.nextInt();
-
-        sc.nextLine();
-
-        switch (option){
-            case 1:
-                System.out.println("Actualizar id");
-                int id = sc.nextInt();
-                sc.nextLine();
-                student.setId(id);
-                break;
-            case 2:
-                System.out.println("Actualizar Nombre");
-                String name = sc.nextLine();
-                student.setName(name);
-                break;
-            default:
-                System.out.println("Seleccione una opción valida");
-        }
-
-
-        return student;
-    }
-
-    public void getStudentById(int id) {
-
-        if (id == student.getId()) {
-            System.out.println("id:" + student.getId() + "\n" +
-                    "Nombre:" + student.getName() + "\n" +
-                    "Apellido " + student.getLastName() + "\n" +
-                    "email: " + student.getEmail() + "\n" +
-                    "Status: " + student.isStatus());
-        } else {
-            System.out.println("Id no encontrado");
-        }
-    }
 
 
 }
