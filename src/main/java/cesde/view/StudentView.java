@@ -26,23 +26,27 @@ public class StudentView {
     }
 
     public void getStudentById(int id){
+
+
         studentServiceImpl.getStudentById(id);
 
 
     }
 
     public List<Student> getAllStudents(){
-        return null;
+
+        return studentServiceImpl.getAllStudents();
     }
 
-    public void updateStudent(){
+    public void updateStudent(int id){
 
-        studentServiceImpl.updateStudentService();
+        studentServiceImpl.updateStudentService(id);
 
     }
 
     public void deleteStudent(int id){
-
+            System.out.println("estoy en el view");
+            studentServiceImpl.deleteStudent(id);
     }
 
 
