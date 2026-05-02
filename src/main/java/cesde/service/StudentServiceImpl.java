@@ -1,86 +1,80 @@
 package cesde.service;
 
 import cesde.domain.Student;
-import cesde.repository.StudentRepository;
+import cesde.persistence.repository.StudentRepository;
+import cesde.service.portinput.StudentService;
+import cesde.util.TypeValidator;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class StudentServiceImpl implements StudentService {
 
-    Scanner sc = new Scanner(System.in);
-
-
-    // Voy a crear una instancia unica de Student
-
-    private final Student student;
     private final StudentRepository studentRepository;
 
-    public StudentServiceImpl(Student student, StudentRepository studentRepository){
+    public StudentServiceImpl( StudentRepository studentRepository){
 
-        this.student = student;
         this.studentRepository= studentRepository;// Esto es una inyeccion de dependencias
     }
 
     @Override
     public Student createStudentService(){
 
-        System.out.println("Ingrese el id del Estudiente");
-        int id = sc.nextInt();
-        student.setId(id);
-        sc.nextLine();
+        Student student = new Student();
 
-        System.out.println("Ingrese el Nombre del Estudiante");
-        String name = sc.nextLine();
-        student.setName(name);
-
-        System.out.println("Ingrese el apellido del estudiante");
-        String lastName = sc.nextLine();
-        student.setLastName(lastName);
-
+        student.setId(TypeValidator.validateInt("Ingrese el id del estudiante"));
+        student.setName(TypeValidator.validateString("Ingrese el Nombre del Estudiante"));
+        student.setLastName(TypeValidator.validateString("Ingrese el apellido del estudiante"));
+        student.setEmail(TypeValidator.validateString("Ingrese un email valido"));
+        student.setStatus(TypeValidator.validateBoolean("Seleccione un estado"));
 
         return studentRepository.createStudentRepository(student);
-
     }
 
     @Override
-    public Student updateStudentService(){
+    public Student updateStudentService(int id){
 
-        System.out.println("Seleccione el dato a actualizar \n" +
-                "1. id \n" +
-                "2. Nombre \n" +
-                "3. Apellido \n" +
-                "4. Email \n" +
-                "5. Estado ");
+        Student student = studentRepository.getStudentById(id);
 
+        if(id == student.getId()){
+            System.out.println("Seleccione el dato a actualizar \n" +
+                    "1. id \n" +
+                    "2. Nombre \n" +
+                    "3. Apellido \n" +
+                    "4. Email \n" +
+                    "5. Estado ");
 
-        int option = sc.nextInt();
+            int option = TypeValidator.validateInt("Opcion: ");
 
-        sc.nextLine();
+            switch (option){
+                case 1:
+                    student.setId(TypeValidator.validateInt("Actualizar id"));
+                    break;
+                case 2:
+                    student.setName(TypeValidator.validateString("Actualizar Nombre"));
+                    break;
+                case 3:
+                    student.setLastName(TypeValidator.validateString("Actualizar Apellido"));
+                    break;
+                case 4:
+                    student.setEmail(TypeValidator.validateString("Actualizar Email"));
+                    break;
+                case 5:
+                    student.setStatus(TypeValidator.validateBoolean("Actualizar Estado"));
+                    break;
+                default:
+                    System.out.println("Seleccione una opción valida");
+            }
 
-        switch (option){
-            case 1:
-                System.out.println("Actualizar id");
-                int id = sc.nextInt();
-                sc.nextLine();
-                student.setId(id);
-                break;
-            case 2:
-                System.out.println("Actualizar Nombre");
-                String name = sc.nextLine();
-                student.setName(name);
-                break;
-            default:
-                System.out.println("Seleccione una opción valida");
         }
-
 
         return student;
     }
 
     @Override
     public Optional<Student> getStudentById(int id) {
+
+        Student student = studentRepository.getStudentById(id);
 
         if (id == student.getId()) {
             System.out.println("id:" + student.getId() + "\n" +
@@ -97,11 +91,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
-        return List.of();
+        return studentRepository.getAllStudents();
     }
 
     @Override
     public void deleteStudent(int id) {
-
+        System.out.println("Estoy en el service");
+        studentRepository.deleteStudentRepository(id);
     }
+
 }

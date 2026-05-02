@@ -1,4 +1,4 @@
-package cesde.service;
+package cesde.service.portinput;
 
 import cesde.domain.Student;
 
@@ -15,7 +15,7 @@ public interface StudentService {
     // Contratos
 
     public Student createStudentService();
-    public Student updateStudentService();
+    public Student updateStudentService(int id);
     public Optional<Student> getStudentById(int id);
     public List<Student> getAllStudents();
         public void deleteStudent(int id);
